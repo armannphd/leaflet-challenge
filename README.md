@@ -7,3 +7,6 @@ Below is a snapshot of an expected output of the map.
 
 The legend shown represents depth of the earthquake.  Sizes of the circles are indicative the magnitude.
 
+
+
+<img width="1264" alt="Screenshot 2023-03-31 at 7 34 49 PM" src="https://user-images.githubusercontent.com/115322974/229261955-cf7d13d5-62ec-4f64-938a-89d4e58e762a.png">
