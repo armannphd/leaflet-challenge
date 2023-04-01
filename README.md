@@ -1,3 +1,5 @@
+## Analysis of all earthquakes of magnitude 2.5 or larger over the past 30 days
+
 There are three main files wihtin this repository.  A CSS and JS located within the static folder and also the index.html.
 
 All codes were based on exercises done in the bootcamp except for the legend.  Extensive "googling" on various websites eventually resulted in that code.
