@@ -5,9 +5,58 @@ let map = L.map("map", {
 });
 
 // Add tile layer 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+// Add tile layers 
+let streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
+
+let topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://opentopomap.org/about">OpenTopoMap</a> contributors'
+});
+
+let satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  maxZoom: 18,
+  id: 'mapbox/satellite-v9',
+  tileSize: 512,
+  zoomOffset: -1,
+  accessToken: 'pk.eyJ1IjoiYXJtYW5ucGhkIiwiYSI6ImNsZnlleGVyZzBtY20zZXA2YXlkcWx3cTEifQ.LeDwqwn7B_7ZD1O_ZDA0Aw'
+});
+
+// Add tectonic overlay layer
+let tectonic = L.geoJSON(null, {
+  style: {
+    color: "orange",
+    weight: 2,
+    opacity: 0.8
+  }
+}).addTo(map);
+
+
+
+// Get the GeoJSON data for tectonic plates
+let tectonicData = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
+
+d3.json(tectonicData)
+  .then(function(data) {
+    tectonic.addData(data);
+  });
+
+// Create a base layer object with multiple layers
+let baseLayers = {
+  "Street Map": streetLayer,
+  "Topographic Map": topoLayer,
+  "Satellite Map": satelliteLayer
+};
+
+let overlayLayers = {
+  "Tectonic Plates": tectonic
+};
+
+
+// Add the base layer control to the map
+L.control.layers(baseLayers, overlayLayers).addTo(map);
+
 
 // Get the GeoJSON data
 
