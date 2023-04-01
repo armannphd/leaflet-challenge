@@ -1,0 +1,40 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}
+
+/* The following below was added in order to add the legend with the swatches */
+
+
+.legend {
+  position: bottomright;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.swatch {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.label {
+  margin: 0;
+  white-space: nowrap;
+}
+
