@@ -5,7 +5,7 @@ All codes were based on exercises done in the bootcamp except for the legend.  E
 
 Below is a snapshot of an expected output of the map.  
 
-The legend shown represents depth of the earthquake.  Sizes of the circles are indicative the magnitude.
+The legend shown represents depth of the earthquake.  Sizes of the circles are indicative of the magnitude.
 
 
 
