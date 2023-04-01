@@ -14,13 +14,13 @@ let topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', 
   attribution: '&copy; <a href="https://opentopomap.org/about">OpenTopoMap</a> contributors'
 });
 
-let satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + ACCESS_TOKEN, {
+let satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
   maxZoom: 18,
   id: 'mapbox/satellite-v9',
   tileSize: 512,
-  zoomOffset: -1
-  
+  zoomOffset: -1,
+  accessToken: 'pk.eyJ1IjoiYXJtYW5ucGhkIiwiYSI6ImNsZnlleGVyZzBtY20zZXA2YXlkcWx3cTEifQ.LeDwqwn7B_7ZD1O_ZDA0Aw'
 });
 
 // Add tectonic overlay layer
