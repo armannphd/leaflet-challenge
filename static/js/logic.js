@@ -1,3 +1,9 @@
+//add dotenv for token in satellite layer
+import config from './config.js';
+
+const accessToken = config.accessToken;
+
+
 // set the map of the USA
 let map = L.map("map", {
   center: [37.8, -96],
@@ -14,14 +20,28 @@ let topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', 
   attribution: '&copy; <a href="https://opentopomap.org/about">OpenTopoMap</a> contributors'
 });
 
-let satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+import { ACCESS_TOKEN } from './config.js';
+
+// Add satellite layer
+let satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + ACCESS_TOKEN, {
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
   maxZoom: 18,
   id: 'mapbox/satellite-v9',
   tileSize: 512,
-  zoomOffset: -1,
-  accessToken: 'pk.eyJ1IjoiYXJtYW5ucGhkIiwiYSI6ImNsZnlleGVyZzBtY20zZXA2YXlkcWx3cTEifQ.LeDwqwn7B_7ZD1O_ZDA0Aw'
+  zoomOffset: -1
 });
+
+
+
+/*
+let satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + process.env.ACCESS_TOKEN, {
+  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  maxZoom: 18,
+  id: 'mapbox/satellite-v9',
+  tileSize: 512,
+  zoomOffset: -1
+});
+*/
 
 // Add tectonic overlay layer
 let tectonic = L.geoJSON(null, {
@@ -46,7 +66,7 @@ d3.json(tectonicData)
 let baseLayers = {
   "Street Map": streetLayer,
   "Topographic Map": topoLayer,
-  "Satellite Map": satelliteLayer
+  //"Satellite Map": satelliteLayer
 };
 
 let overlayLayers = {
