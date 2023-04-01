@@ -34,7 +34,7 @@ d3.json(geoData)
       weight: 1,
       opacity: 1,
       fillOpacity: 0.8
-    }).bindPopup(`<strong>${feature.properties.place}</strong><br>Magnitude: ${mag}<br>Depth: ${depth}`)
+    }).bindPopup(`<strong>${feature.properties.place}</strong><br>Magnitude: ${mag}<br>Depth: ${depth}<p>${new Date(feature.properties.time)}</p>`)
     .addTo(map);
   });
 });
