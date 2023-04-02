@@ -4,6 +4,37 @@ let map = L.map("map", {
   zoom: 4
 });
 
+// Get the GeoJSON data
+
+let geoData = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson";
+
+d3.json(geoData)
+  .then(function(data) {
+
+
+  // loop through each earthquake feature and add a marker to the map
+  data.features.forEach(function(feature) {
+    let mag = feature.properties.mag;
+    let depth = feature.geometry.coordinates[2];
+    let color = depth > 90 ? 'black' :
+      depth > 50 ? 'darkred' :
+      depth > 30 ? 'red' :
+      depth > 10 ? 'darkorange' :
+      depth > 0 ? 'gold' :
+      'lightgreen';
+    L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
+      radius: mag * 3.5,
+      fillColor: color,
+      color: 'black',
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    }).bindPopup(`<strong>${feature.properties.place}</strong><br>Magnitude: ${mag}<br>Depth: ${depth}<p>${new Date(feature.properties.time)}</p>`)
+    .addTo(map);
+  });
+});
+
+
 // Add tile layers 
 let streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -52,35 +83,7 @@ let overlayLayers = {
 L.control.layers(baseLayers, overlayLayers).addTo(map);
 
 
-// Get the GeoJSON data
 
-let geoData = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson";
-
-d3.json(geoData)
-  .then(function(data) {
-
-
-  // loop through each earthquake feature and add a marker to the map
-  data.features.forEach(function(feature) {
-    let mag = feature.properties.mag;
-    let depth = feature.geometry.coordinates[2];
-    let color = depth > 90 ? 'black' :
-      depth > 50 ? 'darkred' :
-      depth > 30 ? 'red' :
-      depth > 10 ? 'darkorange' :
-      depth > 0 ? 'gold' :
-      'lightgreen';
-    L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
-      radius: mag * 3.5,
-      fillColor: color,
-      color: 'black',
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
-    }).bindPopup(`<strong>${feature.properties.place}</strong><br>Magnitude: ${mag}<br>Depth: ${depth}<p>${new Date(feature.properties.time)}</p>`)
-    .addTo(map);
-  });
-});
 
 //Add legend, note that changes to CSS were made in order to view the legend
 // Define the colors and intervals for the legend
