@@ -4,7 +4,6 @@ let map = L.map("map", {
   zoom: 4
 });
 
-// Add tile layer 
 // Add tile layers 
 let streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -14,14 +13,9 @@ let topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', 
   attribution: '&copy; <a href="https://opentopomap.org/about">OpenTopoMap</a> contributors'
 });
 
-let satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-  maxZoom: 18,
-  id: 'mapbox/satellite-v9',
-  tileSize: 512,
-  zoomOffset: -1,
-  accessToken: 'pk.eyJ1IjoiYXJtYW5ucGhkIiwiYSI6ImNsZnlleGVyZzBtY20zZXA2YXlkcWx3cTEifQ.LeDwqwn7B_7ZD1O_ZDA0Aw'
-});
+
+  
+
 
 // Add tectonic overlay layer
 let tectonic = L.geoJSON(null, {
@@ -45,8 +39,8 @@ d3.json(tectonicData)
 // Create a base layer object with multiple layers
 let baseLayers = {
   "Street Map": streetLayer,
-  "Topographic Map": topoLayer,
-  "Satellite Map": satelliteLayer
+  "Topographic Map": topoLayer
+  
 };
 
 let overlayLayers = {
