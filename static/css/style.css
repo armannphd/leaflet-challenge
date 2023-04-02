@@ -16,8 +16,9 @@ html {
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;
-  padding: 10px;
+  padding: 1px;
   font-size: 12px;
+  font-weight: bold;
   line-height: 1.5;
 }
 
@@ -31,3 +32,10 @@ html {
   height: 20px;
   margin-right: 10px;
 }
+
+.legend-text {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+

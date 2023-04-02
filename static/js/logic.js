@@ -98,18 +98,22 @@ legend.onAdd = function (map) {
   // Check if the "Earthquakes" overlay layer is currently selected
   if (map.hasLayer(markerGroup)) {
     var div = L.DomUtil.create('div', 'legend');
+    var legendTitle = '<div class="legend-title"><p>Depth of Earthquake (km)</p></div>';
+    div.innerHTML += legendTitle;
     for (var i = 0; i < intervals.length; i++) {
       var label = intervals[i];
       var color = colors[i];
       var legendItem = '<div class="legend-item"><div class="swatch" style="background-color: ' + color + '"></div><p class="label">' + label + '</p></div>';
       div.innerHTML += legendItem;
     }
+    // Add a new div for your text
+    div.innerHTML += '<div class="legend-text">Size of circle<br>indicative of magnitude</div>';
     return div;
   } else {
     return L.DomUtil.create('div', '');
   }
 };
-
+  
 // Update the legend when the overlay layers are changed
 map.on('overlayadd overlayremove', function (event) {
   if (event.name == "Earthquakes") {
