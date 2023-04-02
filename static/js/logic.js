@@ -4,6 +4,50 @@ let map = L.map("map", {
   zoom: 4
 });
 
+// Add tile layer 
+// Add tile layers 
+let streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+let topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://opentopomap.org/about">OpenTopoMap</a> contributors'
+});
+
+// Add tectonic overlay layer
+let tectonic = L.geoJSON(null, {
+  style: {
+    color: "orange",
+    weight: 2,
+    opacity: 0.8
+  }
+}).addTo(map);
+
+
+
+// Get the GeoJSON data for tectonic plates
+let tectonicData = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
+
+d3.json(tectonicData)
+  .then(function(data) {
+    tectonic.addData(data);
+  });
+
+// Create a base layer object with multiple layers
+let baseLayers = {
+  "Street Map": streetLayer,
+  "Topographic Map": topoLayer
+};
+
+let overlayLayers = {
+  "Tectonic Plates": tectonic
+};
+
+
+// Add the base layer control to the map
+L.control.layers(baseLayers, overlayLayers).addTo(map);
+
+
 // Get the GeoJSON data
 
 let geoData = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson";
@@ -33,57 +77,6 @@ d3.json(geoData)
     .addTo(map);
   });
 });
-
-
-// Add tile layers 
-let streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-let topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://opentopomap.org/about">OpenTopoMap</a> contributors'
-});
-
-
-  
-
-
-// Add tectonic overlay layer
-let tectonic = L.geoJSON(null, {
-  style: {
-    color: "orange",
-    weight: 2,
-    opacity: 0.8
-  }
-}).addTo(map);
-
-
-
-// Get the GeoJSON data for tectonic plates
-let tectonicData = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
-
-d3.json(tectonicData)
-  .then(function(data) {
-    tectonic.addData(data);
-  });
-
-// Create a base layer object with multiple layers
-let baseLayers = {
-  "Street Map": streetLayer,
-  "Topographic Map": topoLayer
-  
-};
-
-let overlayLayers = {
-  "Tectonic Plates": tectonic
-};
-
-
-// Add the base layer control to the map
-L.control.layers(baseLayers, overlayLayers).addTo(map);
-
-
-
 
 //Add legend, note that changes to CSS were made in order to view the legend
 // Define the colors and intervals for the legend
