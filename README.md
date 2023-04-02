@@ -2,8 +2,10 @@
 
 There are three main files wihtin this repository.  A CSS and JS located within the static folder and also the index.html.
 
-All codes were based on exercises done in the bootcamp except for the legend.  Extensive "googling" on various websites eventually resulted in that code.
-The .env made to include the ACCESS_TOKEN was learned through viewing of youtube videos.
+All codes were based on exercises done in the bootcamp except for the legend.  Extensive "googling" and youtube videos eventually resulted in that code.
+
+The earthquake markers are now an overlay layer marked as "Earthquakes" in order for better viewing
+
 
 
 Below is a snapshot of an expected output of the map.  
