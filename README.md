@@ -14,4 +14,5 @@ The legend shown represents depth of the earthquake.  Sizes of the circles are i
 
 
 
-<img width="1264" alt="Screenshot 2023-03-31 at 7 34 49 PM" src="https://user-images.githubusercontent.com/115322974/229261955-cf7d13d5-62ec-4f64-938a-89d4e58e762a.png">
+![Screenshot 2023-04-01 at 10 00 37 PM](https://user-images.githubusercontent.com/115322974/229332353-d473eb39-ad12-403e-9ec9-1f4b7f6ed286.png)
+
